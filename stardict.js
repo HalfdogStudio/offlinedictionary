@@ -47,13 +47,13 @@
                 file, pako.inflateRaw
             );
             if(size >= 0)
-                return reader.load().then(_ => reader.read(offset, size)).catch(e=>console.log(e))
+                return reader.load().then(_ => reader.read(offset, size)).catch(e=>console.log(e));
             else
-                return reader.load().then(_ => reader.read(offset));
+                return reader.load().then(_ => reader.read(offset)).catch(e=>console.log(e));
         } else {
             var reader = new FileReader();
             return new Promise(function (resolve, reject) {
-                reader.onloadend = function (evt) {
+                reader.onload = function (evt) {
                     resolve(evt.target.result);
                 };
                 reader.onerror = function (err) {

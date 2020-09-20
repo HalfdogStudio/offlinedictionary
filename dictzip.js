@@ -182,6 +182,9 @@
             }
 
             this.load = function() {
+                if (verified) {
+                    return Promise.resolve()
+                }
                 return new Promise(function (resolve, reject) {
                     var reader = new FileReader();
                     reader.onloadend = function (evt) {
